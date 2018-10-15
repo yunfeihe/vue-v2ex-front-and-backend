@@ -1,7 +1,7 @@
 <template>
     <panel-list class="main-content">
         <div class="list-item tabs">
-            <router-link v-for="tab in tabItems" :key="tab"></router-link>
+            <router-link v-for="tab in tabItems" :key="tab">{{ tab.title }}</router-link>
         </div>
         <div class="list-item nodes"></div>
         <div class="posts">
