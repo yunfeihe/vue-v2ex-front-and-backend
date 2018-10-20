@@ -16,7 +16,7 @@
 <script>
     const axios = require('axios');
 
-    import PanelList from '../../common/com/PanelList.vue';
+    import PanelList from './PanelList.vue';
 
     export default {
         components: {
@@ -29,7 +29,7 @@
             };
         },
         created() {
-            axios.get('http://localhost:8080/static/mock/hot.json')
+            axios.get('/api/v1/hot.json')
                 .then(res => {
                     const data = res.data;
                     this.$data.topicItems = data;

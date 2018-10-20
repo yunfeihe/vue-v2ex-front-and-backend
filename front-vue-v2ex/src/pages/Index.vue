@@ -4,30 +4,23 @@
         <div class="content">
             <div class="main-wrap">
                 <div class="main">
-                    <main-content></main-content>
+                    <router-view name="main"></router-view>
                 </div>
             </div>
             <div class="side-bar">
-                <login/>
-                <div class="sep-20"></div>
-                <hot-topic></hot-topic>
+                <router-view name="side-bar"></router-view>
             </div>
         </div>
+        <div class="sep-20"></div>
     </div>
 </template>
 
-<script>
+<script>    
     import PageHeader from './com/Header.vue';
-    import HotTopic from './com/HotTopic.vue';
-    import Login from './com/Login.vue';
-    import MainContent from './com/MainContent.vue';
     export default {
         components: {
             PageHeader,
-            HotTopic,
-            Login,
-            MainContent,
-        }
+        },
     }
 </script>
 
@@ -36,14 +29,13 @@
         $bg-color: #e2e2e2;
         div.sep-20 {
             height: 20px;
-            background-color: $bg-color;
+            // background-color: $bg-color;
         }
         background-color: $bg-color;
         background: linear-gradient(rgba(85, 85, 85, 0.5) 44px,rgba(0,0,0,.22) 46px, #e2e2e2 50px);
         min-height: 900px;
         font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
         .content {
-            
             margin: 0 auto;
             background-color: $bg-color;
             max-width: 1100px;
@@ -57,21 +49,16 @@
             }
             $side-bar-width: 270px;
             .main-wrap {
-                
                 width: 100%;
                 box-sizing: border-box;
                 padding-right: $side-bar-width + 20px;
                 .main {
-                    background-color: red;
+                    min-height: 1px;
                 }
             }
             .side-bar {
                 margin-left: -$side-bar-width;
                 width: $side-bar-width;
-                background-color: white;
-                >div {
-                    
-                }
             }
         }
     }

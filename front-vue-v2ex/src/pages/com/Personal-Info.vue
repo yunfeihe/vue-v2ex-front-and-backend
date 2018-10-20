@@ -1,26 +1,32 @@
 <template>
     <div class="login">
-        <panel-list>
+        <panel-list v-if="!isLogin">
             <div class="list-item title">
                 <h2 class="panel-title">{{ title }}</h2>
                 <div class="desc">{{ desc }}</div>
             </div>
             <div class="list-item login-part">
-                <div class="center-wrap"><btn :width="74" :height="28">现在注册</btn></div>
-                <div class="other">已注册用户请 <router-link class="login-link" :to="{name: 'Index'}">登陆</router-link></div>
+                <router-link :to="{name: 'Register'}" tag="div" class="center-wrap"><btn :width="74" :height="28">现在注册</btn></router-link>
+                <div class="other">已注册用户请 <router-link class="login-link" :to="{name: 'Login'}">登陆</router-link></div>
             </div>
         </panel-list>
     </div>
 </template>
 
 <script>
-    import PanelList from '../../common/com/PanelList';
-    import Btn from '../../common/com/Btn.vue';
+    import PanelList from './PanelList';
+    import Btn from './Btn.vue';
 
     export default {
         components: {
             PanelList,
             Btn,
+        },
+        props: {
+            isLogin: {
+                type: Boolean,
+                default: false,
+            }
         },
         data() {
             return {

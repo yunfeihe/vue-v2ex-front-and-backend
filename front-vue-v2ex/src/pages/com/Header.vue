@@ -8,15 +8,26 @@
                    <input class="search-input" type="text">
                 </form>
             </div>
-            <ul class="nav">
+            <ul class="nav" v-if="!this.$store.state.isLogin">
                 <li class="nav-item">
                     <router-link :to="{name: 'Index'}">首页</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link :to="{name: 'Index'}">注册</router-link>
+                    <router-link :to="{name: 'Register'}">注册</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link :to="{name: 'Index'}">登陆</router-link>
+                    <router-link :to="{name: 'Login'}">登陆</router-link>
+                </li>
+            </ul>
+            <ul class="nav" v-if="this.$store.state.isLogin">
+                <li class="nav-item">
+                    <router-link :to="{name: 'Index'}">首页</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link :to="{path: '/user/' + this.$store.state.username}">{{ this.$store.state.username }}</router-link>
+                </li>
+                <li class="nav-item">
+                    <a @click="quit">退出</a>
                 </li>
             </ul>
         </div>
@@ -25,7 +36,11 @@
 
 <script>
     export default {
-        
+        methods: {
+            quit(evt) {
+                this.$store.commit('quit');
+            }
+        }
     }
 </script>
 
@@ -91,6 +106,7 @@
                         color: #556;
                         &:hover {
                             color: #99a;
+                            cursor: pointer;
                         }
                     }
                 }
