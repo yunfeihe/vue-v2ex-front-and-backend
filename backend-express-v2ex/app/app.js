@@ -41,30 +41,12 @@ moduleManager.then(__module => {
         }
     })();
 
-    (function initNodes() {
-        const module = __module;
-
+    (function initMockData() {
+        const help = require(path.resolve(__dirname, 'help.js'));
+        help(__module);
         console.log('path:', __dirname);;
-
-        // const nodes = {
-        //     qus: '问题',
-        //     other: '其他',
-        //     game: '游戏',
-        //     bejing: '北京',
-        //     shanghai: '上海',
-        //     taobao: '淘宝',
-        //     '2018': '2018',
-        //     guitar: '吉他',
-        // }
         
-        // for(let key in nodes) {
-        //     if(nodes.hasOwnProperty(key)) {
-        //         module.Node.create({
-        //             title: nodes[key],
-        //             name: key,
-        //         })
-        //     }
-        // }
+        
     })();
 
     app.use(function(req, res) {

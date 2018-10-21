@@ -31,7 +31,7 @@
                     <h4 class="post-title"><router-link :to="'/post/' + post.id">{{ post.title }}</router-link></h4>
                     <div class="post-info"><div class="src-node">{{ post.node }}</div>&nbsp;•&nbsp;<div class="author">{{post.author}}</div>&nbsp;•&nbsp;{{ post.last_modified }}&nbsp;•&nbsp;最后回复来自 <div class="last-reply-author">{{ '*********' }}</div></div>
                 </div>
-                <div class="reply-nums">{{ post.replies }}</div>
+                <div class="reply-nums">{{ 'post.replies' }}</div>
             </div>
         </div>
     </panel-list>
