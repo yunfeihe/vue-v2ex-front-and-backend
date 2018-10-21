@@ -48,7 +48,8 @@
                     password,
                 }).then((res) => {
                     if(res.data.code === 200) {
-                        this.$store.commit('login', username);
+                        this.$store.commit('login', res.data.data);
+                        this.$router.push({name: 'Index'})
                     }
                 }).catch((err) => {
                     console.log('err', err);

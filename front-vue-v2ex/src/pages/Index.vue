@@ -16,10 +16,22 @@
 </template>
 
 <script>    
+    const axios = require('axios');
+    
     import PageHeader from './com/Header.vue';
+
     export default {
         components: {
             PageHeader,
+        },
+        created() {
+            axios.post('/api/v1/isLogin')
+                .then(res => {
+                    const data = res.data;
+                    if(data.isLogin = true) {
+                        this.$store.commit('login', data.data);
+                    }
+                })
         },
     }
 </script>

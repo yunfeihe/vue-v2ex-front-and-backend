@@ -61,7 +61,7 @@
                     password,
                 }).then((res) => {
                     if(res.status === 204) {
-                        this.$router.push({name: 'Index'});
+                        this.$router.push({name: 'Login'});
                     }
                 }).catch(err => {
                     console.log('error', err);

@@ -35,10 +35,19 @@
 </template>
 
 <script>
+    const axios = require('axios');
+
     export default {
         methods: {
             quit(evt) {
                 this.$store.commit('quit');
+                axios.post('/api/v1/clear')
+                    .then(() => {
+                        this.$router.push({name: 'Index'});
+                    })
+                    .catch(err => {
+                        console.log('err', err);
+                    })
             }
         }
     }
@@ -47,7 +56,7 @@
 <style lang="scss" scoped>
     .page-header {
         width: 100%;
-        height: 44px;
+        min-height: 44px;
         background-color: #fff;
         border-bottom: 1px solid rgba(0,0,0,.22);
         line-height: 44px;

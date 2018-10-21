@@ -26,10 +26,10 @@
                 v-for="post in postItems"
                 :key="post.id"
             >
-                <div class="avatar"><router-link :to="{name: 'Index'}"><img :src="post.member.avatar_large"></router-link></div>
+                <div class="avatar"><router-link :to="'/user/' + post.author"><img :src="post.user.head_url"></router-link></div>
                 <div class="post-content">
-                    <h4 class="post-title"><router-link :to="{name: 'Index'}">{{ post.title }}</router-link></h4>
-                    <div class="post-info"><div class="src-node">{{ post.node.name }}</div>&nbsp;•&nbsp;<div class="author">post.member.name</div>&nbsp;•&nbsp;{{ post.last_modified }}&nbsp;•&nbsp;最后回复来自 <div class="last-reply-author">{{ post.last_reply_by }}</div></div>
+                    <h4 class="post-title"><router-link :to="'/post/' + post.id">{{ post.title }}</router-link></h4>
+                    <div class="post-info"><div class="src-node">{{ post.node }}</div>&nbsp;•&nbsp;<div class="author">{{post.author}}</div>&nbsp;•&nbsp;{{ post.last_modified }}&nbsp;•&nbsp;最后回复来自 <div class="last-reply-author">{{ '*********' }}</div></div>
                 </div>
                 <div class="reply-nums">{{ post.replies }}</div>
             </div>
@@ -130,7 +130,7 @@
             }
         },
         created() {
-            axios.get('/api/v1/posts.json?tab=all')
+            axios.post('/api/v1/posts')
                 .then(res => {
                     const data = res.data;
                     this.$data.postItems = data;
@@ -156,7 +156,7 @@
             .tab-item {
                 text-decoration: none;
                 width: 28px;
-                height: 14px;
+                min-height: 14px;
                 padding: 5px 8px;
                 margin-right: 5px;
                 font-size: 14px;

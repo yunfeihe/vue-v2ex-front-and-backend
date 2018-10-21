@@ -8,9 +8,16 @@ const User = orm.define('user', {
     },
     password: {
         type: Sequelize.STRING,
+    },
+    head_url: {
+        type:Sequelize.STRING,
+        defaultValue: `https://images.nowcoder.com/head/${Math.round(Math.random() * 999 )}m.png`,
     }
 });
-
-User.sync({force: true});
-
 module.exports = User;
+
+
+
+
+
+

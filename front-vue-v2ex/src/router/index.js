@@ -6,6 +6,9 @@ import IndexSideBar from '@com/IndexSideBar.vue';
 import RegisterDetail from '@com/RegisterDetail.vue';
 import RegisterDetailSideBar from '@com/RegisterDetailSideBar.vue';
 import LoginDetail from '@com/LoginDetail';
+import NewPost from '@com/NewPost';
+import Post from '@com/Post';
+
 
 Vue.use(Router)
 
@@ -38,6 +41,22 @@ export default new Router({
           components: {
             main: LoginDetail,
             'side-bar': RegisterDetailSideBar,
+          }
+        },
+        {
+          name:'NewPost',
+          path:'post/new',
+          components: {
+            main: NewPost,
+            'side-bar': RegisterDetailSideBar,
+          }
+        },
+        {
+          name:'Post',
+          path: 'post/:id',
+          components: {
+            main: Post,
+            'side-bar': IndexSideBar,
           }
         }
       ],

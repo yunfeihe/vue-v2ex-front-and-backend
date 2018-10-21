@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const moduleExport = {
+const allModules = {
 
 };
 const main = function() {
@@ -14,11 +14,31 @@ const main = function() {
     
     for(let modulePath of modulesPath) {
         const fileName = path.basename(modulePath, '.js');
-        moduleExport[fileName] = require(modulePath);
+        console.log('fileName', fileName);
+        allModules[fileName] = require(modulePath);
     }
-    module.exports = moduleExport;
-    // console.log('moduleExport', moduleExport);
+
+    const moduleSyncPromises = [];
+    for(let mName in allModules) {
+        let module = allModules[mName];
+        let syncPromise = module.sync({
+            force: true,
+        }).then(syncedModule => {
+            return {
+                name: mName,
+                module: syncedModule,
+            };
+        });
+        moduleSyncPromises.push(syncPromise);
+    }
+    let exportPromise = Promise.all(moduleSyncPromises)
+        .then(modules => {
+            const module = {};
+            for(let m of modules) {
+                module[m.name] = m.module;
+            }
+            return module;
+        });
+    module.exports = exportPromise;
 }
-
-
 main();

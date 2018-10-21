@@ -14,11 +14,13 @@ const store = new Vuex.Store({
   state: {
     isLogin: false,
     username: null,
+    head_url: null,
   },
   mutations: {
-    login(state, username) {
+    login(state, userInfo) {
       state.isLogin = true;
-      state.username = username;
+      state.username = userInfo.username;
+      state.head_url = userInfo.head_url;
     },
     quit(state) {
       state.isLogin = false;
